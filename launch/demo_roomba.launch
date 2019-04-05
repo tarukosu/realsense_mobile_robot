@@ -1,0 +1,7 @@
+<launch>
+    <include file="$(find realsense_mobile_robot)/launch/teleop_joy.launch">
+        <arg name="teleop_config" value="$(find realsense_mobile_robot)/config/joy_teleop_roomba.yaml" />
+    </include>
+
+    <include file="$(find ca_driver)/launch/create_2.launch"/>
+</launch>
