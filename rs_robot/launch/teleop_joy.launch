@@ -1,8 +1,28 @@
 <launch>
+<!--
   <arg name="teleop_config" default="$(find rs_robot)/config/joy_teleop.yaml" />
 
   <rosparam file="$(arg teleop_config)" command="load" />
   <node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop"/>
+
+  -->
+  <arg name="enable_button" default="0"/>
+  <arg name="enable_turbo_button" default="1"/>
+  <arg name="axis_linear" default="1"/>
+  <arg name="scale_linear" default="0.5"/>
+  <arg name="scale_linear_turbo" default="1.0"/>
+  <arg name="axis_angular" default="0"/>
+  <arg name="scale_angular" default="1.0"/>
+
+  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_joy">
+    <param name="enable_button" value="$(arg enable_button)"/>
+    <param name="enable_turbo_button" value="$(arg enable_turbo_button)"/>
+    <param name="axis_linear" value="$(arg axis_linear)"/>
+    <param name="scale_linear" value="$(arg scale_linear)"/>
+    <param name="scale_linear_turbo" value="$(arg scale_linear_turbo)"/>
+    <param name="axis_angular" value="$(arg axis_angular)"/>
+    <param name="scale_angular" value="$(arg scale_angular)"/>
+  </node>
   <node pkg="joy" type="joy_node" name="joystick">
     <param name="autorepeat_rate" value="10"/>
   </node>

@@ -1,6 +1,13 @@
 <launch>
     <include file="$(find rs_robot)/launch/teleop_joy.launch">
+        <arg name="enable_button" value="1"/>
+        <arg name="enable_turbo_button" value="3"/>
+        <arg name="scale_linear" value="0.1"/>
+        <arg name="scale_linear_turbo" value="0.3"/>
+        <arg name="scale_angular" value="0.5"/>
+    <!-->
         <arg name="teleop_config" value="$(find rs_robot)/config/joy_teleop_roomba.yaml" />
+        -->
     </include>
 
     <include file="$(find ca_driver)/launch/create_2.launch"/>
