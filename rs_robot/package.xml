@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>realsense_mobile_robot</name>
+  <name>rs_robot</name>
   <version>0.0.0</version>
   <description>The realsense_mobile_robot package</description>
 
