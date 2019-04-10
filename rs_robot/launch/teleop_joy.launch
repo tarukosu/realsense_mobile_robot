@@ -1,5 +1,5 @@
 <launch>
-  <arg name="teleop_config" default="$(find realsense_mobile_robot)/config/joy_teleop.yaml" />
+  <arg name="teleop_config" default="$(find rs_robot)/config/joy_teleop.yaml" />
 
   <rosparam file="$(arg teleop_config)" command="load" />
   <node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop"/>
