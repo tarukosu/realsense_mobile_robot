@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find realsense2_camera)/launch/rs_d400_and_t265.launch">
+        <arg name="serial_no_camera1" value="845412111163"/>
+        <arg name="serial_no_camera2" value="838212070444"/>
+    </include>
+</launch>
