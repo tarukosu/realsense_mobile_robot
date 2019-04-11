@@ -28,5 +28,7 @@
     -->
    
 
-    <include file="$(find ca_driver)/launch/create_2.launch"/>
+    <include file="$(find ca_driver)/launch/create_2.launch">
+        <arg name="config" value="$(find rs_robot)/config/roomba.yaml"/>
+    </include>
 </launch>
