@@ -24,6 +24,9 @@
     <arg name="topic_odom_in"             default="odom_in"/>
     <arg name="calib_odom_file"           default=""/>
 
+    <arg name="throttle_rate" default="10.0" />
+    <arg name="throttle_cloud" default="true" />
+
     <group ns="$(arg camera1)">
         <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
             <arg name="serial_no"             value="$(arg serial_no_camera1)"/>
@@ -66,6 +69,26 @@
             <param name="angle_min" value="-0.606"/> <!-- (M_PI / 180) * (-69.4 / 2) -->
             <param name="angle_max" value="0.606"/>  <!-- (M_PI / 180) * ( 69.4 / 2) -->
             <param name="target_frame" value="base_footprint"/>
+        </node>
+
+         <node pkg="nodelet" type="nodelet" name="voxel_grid" args="load pcl/VoxelGrid $(arg manager)" output="screen">
+            <remap from="~input" to="depth/color/points" />
+            <remap from="~output" to="depth/color/voxel_grid_points" />
+            <rosparam>
+                filter_field_name: z
+                filter_limit_min: 0.0
+                filter_limit_max: 5
+                filter_limit_negative: False
+                leaf_size: 0.01
+            </rosparam>
+        </node>
+
+        <node  pkg="nodelet" type="nodelet" name="throttle_voxel_grid_points"
+            args="load jsk_topic_tools/LightweightThrottle $(arg manager)"
+            if="$(arg throttle_cloud)" respawn="true">
+            <remap from="~input" to="depth/color/voxel_grid_points" />
+            <remap from="~output" to="depth/color/voxel_grid_points_throttled" />
+            <param name="update_rate" value="$(arg throttle_rate)" />
         </node>
     </group>
     <!--
