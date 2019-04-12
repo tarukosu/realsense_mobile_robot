@@ -43,6 +43,11 @@
             <arg name="initial_reset"         value="$(arg initial_reset)"/>
             <arg name="align_depth"           value="true"/>
             <arg name="filters"               value="pointcloud"/>
+
+            <!--
+                <arg name="pointcloud_texture_stream" default="RS2_STREAM_ANY"/>
+            -->
+            
             <arg name="color_width"           value="$(arg color_width)"/>
             <arg name="color_height"          value="$(arg color_height)"/>
             <arg name="depth_width"           value="$(arg depth_width)"/>
@@ -53,8 +58,13 @@
         <node pkg="nodelet" type="nodelet" name="pointcloud_to_laserscan" args="load pointcloud_to_laserscan/pointcloud_to_laserscan_nodelet $(arg manager)" >
             <remap from="cloud_in" to="depth/color/points"/>
             <remap from="scan" to="depth/scan"/>
+
+            <param name="min_height" value="0.05"/>
+            <param name="max_height" value="0.2"/>
             <param name="range_min" value="0.2"/>
             <param name="range_max" value="8"/>
+            <param name="angle_min" value="-0.606"/> <!-- (M_PI / 180) * (-69.4 / 2) -->
+            <param name="angle_max" value="0.606"/>  <!-- (M_PI / 180) * ( 69.4 / 2) -->
             <param name="target_frame" value="base_footprint"/>
         </node>
     </group>
