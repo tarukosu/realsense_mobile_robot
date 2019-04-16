@@ -4,17 +4,6 @@ import rospy
 import tf2_ros
 import geometry_msgs.msg
 
-def publish_transform(transform, base_frame, parent_frame, child_frame):
-    broadcaster = tf2_ros.StaticTransformBroadcaster()
-
-    transform.header.stamp = rospy.Time.now()
-    transform.header.frame_id = parent_frame
-    transform.child_frame_id = child_frame
-
-    print(transform)
-    broadcaster.sendTransform(transform)
-
-
 def publish_transform(parent_frame, child_frame, offset_z):
     broadcaster = tf2_ros.StaticTransformBroadcaster()
 
@@ -58,9 +47,8 @@ if __name__ == '__main__':
     rate = rospy.Rate(update_rate)
     while not rospy.is_shutdown():
         try:
-            transform = tfBuffer.lookup_transform(base_frame, footprint_frame, rospy.Time())
-            print(transform)
-            offset_z = -transform.transform.translation.z
+            transform = tfBuffer.lookup_transform(child_frame, footprint_frame, rospy.Time())
+            offset_z = - transform.transform.translation.z
             publish_transform(base_frame, child_frame, offset_z)
             rate.sleep()
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
