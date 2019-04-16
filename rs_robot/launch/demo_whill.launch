@@ -12,7 +12,5 @@
 
     <include file="$(find rs_robot)/launch/cmd_vel_mux.launch"/>
 
-    <include file="$(find ca_driver)/launch/create_2.launch">
-        <arg name="config" value="$(find rs_robot)/config/roomba.yaml"/>
-    </include>
+    <include file="$(find ros_whill)/launch/modelc.launch"/>
 </launch>
