@@ -31,27 +31,33 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
   <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
   <!-- <arg name="base_local_planner" default="base_local_planner/TrajectoryPlannerROS"/> -->
 
+  <arg name="planner" default="$(find rs_robot_navigation)/config/planner.yaml"/>
+  <arg name="costmap_common" default="$(find rs_robot_navigation)/config/costmap_common.yaml"/>
+  <arg name="costmap_local" default="$(find rs_robot_navigation)/config/costmap_local.yaml"/>
+  <arg name="costmap_global_static" default="$(find rs_robot_navigation)/config/costmap_global_static.yaml"/>
+  <arg name="costmap_global_laser" default="$(find rs_robot_navigation)/config/costmap_global_laser.yaml"/>
+
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <remap from="cmd_vel" to="/cmd_vel_mux/input/navi"/>
+    <remap from="cmd_vel" to="/yocs_cmd_vel_mux/input/navi"/>
 
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
     <param name="base_local_planner" value="$(arg base_local_planner)"/>  
-    <rosparam file="$(find rs_robot_navigation)/config/planner.yaml" command="load"/>
+    <rosparam file="$(arg planner)" command="load"/>
 
     <!-- observation sources located in costmap_common.yaml -->
-    <rosparam file="$(find rs_robot_navigation)/config/costmap_common.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find rs_robot_navigation)/config/costmap_common.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(arg costmap_common)" command="load" ns="global_costmap" />
+    <rosparam file="$(arg costmap_common)" command="load" ns="local_costmap" />
 
     <!-- local costmap, needs size -->
-    <rosparam file="$(find rs_robot_navigation)/config/costmap_local.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(arg costmap_local)" command="load" ns="local_costmap" />
     <param name="local_costmap/width" value="10.0"/>
     <param name="local_costmap/height" value="10.0"/>
 
     <!-- static global costmap, static map provides size -->
-    <rosparam file="$(find rs_robot_navigation)/config/costmap_global_static.yaml" command="load" ns="global_costmap" unless="$(arg no_static_map)"/>
+    <rosparam file="$(arg costmap_global_static)" command="load" ns="global_costmap" unless="$(arg no_static_map)"/>
     
     <!-- global costmap with laser, for odom_navigation_demo -->
-    <rosparam file="$(find rs_robot_navigation)/config/costmap_global_laser.yaml" command="load" ns="global_costmap" if="$(arg no_static_map)"/>
+    <rosparam file="$(arg costmap_global_laser)" command="load" ns="global_costmap" if="$(arg no_static_map)"/>
     <param name="global_costmap/width" value="100.0" if="$(arg no_static_map)"/>
     <param name="global_costmap/height" value="100.0" if="$(arg no_static_map)"/>
   </node>

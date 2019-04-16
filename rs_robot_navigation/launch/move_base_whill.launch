@@ -1,0 +1,8 @@
+<launch>
+  <!--- Run Move Base -->  
+  <include file="$(find rs_robot_navigation)/launch/move_base.launch">
+    <arg name="no_static_map" value="true"/>
+    <arg name="costmap_common" value="$(find rs_robot_navigation)/config/whill/costmap_common.yaml"/>
+    <arg name="planner" default="$(find rs_robot_navigation)/config/whill/planner.yaml"/>
+  </include>
+</launch>
