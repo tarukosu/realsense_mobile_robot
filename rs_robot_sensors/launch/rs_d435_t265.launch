@@ -68,7 +68,8 @@
             <param name="range_max" value="8"/>
             <param name="angle_min" value="-0.606"/> <!-- (M_PI / 180) * (-69.4 / 2) -->
             <param name="angle_max" value="0.606"/>  <!-- (M_PI / 180) * ( 69.4 / 2) -->
-            <param name="target_frame" value="odom"/>
+            <param name="target_frame" value="base_footprint"/>
+	    <param name="use_inf" value="true"/>
         </node>
 
          <node pkg="nodelet" type="nodelet" name="voxel_grid" args="load pcl/VoxelGrid $(arg manager)" output="screen">
