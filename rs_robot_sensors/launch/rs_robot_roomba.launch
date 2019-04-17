@@ -6,7 +6,7 @@
         <param name="default_offset" value="0.12"/>
     </node>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="ground_offset_to_t265_odom" args="0.15 0 0 0 0 0 /t265_ground_offset /t265_odom_frame"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="ground_offset_to_t265_odom" args="0.15 0 0 0 0 0 t265_ground_offset t265_odom_frame"/>
     <!--
     <node pkg="tf2_ros" type="static_transform_publisher" name="t265_link_to_roomba" args="-0.15 0 -0.12 0 0 0 /t265_pose_frame /base_footprint"/>
     -->
@@ -15,7 +15,7 @@
         <param name="child_frame" value="base_footprint"/>
     </node>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_d435" args="-0.03 0 0.03 0 0 0 /t265_pose_frame /d435_link"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_d435" args="-0.03 0 0.03 0 0 0 t265_pose_frame d435_link"/>
 
 
 <!--
