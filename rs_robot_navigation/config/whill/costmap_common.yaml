@@ -1,4 +1,4 @@
-footprint: [[-0.16, -0.16], [-0.16, 0.16], [0.16, 0.16], [0.16, -0.16]]
+footprint: [[0.0, 0.3], [1.0, 0.3], [1.0, -0.3], [0.0, -0.3]]
 footprint_padding: 0.01
 
 robot_base_frame: base_footprint

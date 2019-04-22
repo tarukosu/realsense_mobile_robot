@@ -17,6 +17,7 @@
 
     <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_d435" args="-0.03 0 0.03 0 0 0 t265_pose_frame d435_link"/>
 
+    <node pkg="tf2_ros" type="static_transform_publisher" name="basefootprint_to_marker" args="0.05 0 0.13 0 0 0 base_footprint vuforia_marker"/>
 
 <!--
     <node pkg="tf" type="static_transform_publisher" name="odom_to_t265_odom" args="0 0 0 0 0 0 /odom /t265_odom_frame 100"/>

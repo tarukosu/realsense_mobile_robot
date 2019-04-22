@@ -1,0 +1,27 @@
+<launch>
+    <include file="$(find rs_robot_sensors)/launch/rs_d435_t265.launch"/>
+
+    <node pkg="rs_robot_sensors" type="t265_ground_offset_publisher.py" name="odom_to_t265_offset">
+        <param name="child_frame" value="t265_ground_offset"/>
+        <param name="default_offset" value="0.48"/>
+    </node>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="ground_offset_to_t265_odom2" args="0.65 -0.3 0 0 0 0 t265_ground_offset t265_odom_frame"/>
+    
+<!--
+    <node pkg="tf2_ros" type="static_transform_publisher" name="ground_offset_to_t265_odom1" args="0 0 0 3.14 0 0 t265_ground_offset t265_odom_frame_rotated"/>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="ground_offset_to_t265_odom2" args="0 0.2 0 0 0 0 t265_odom_frame_rotated t265_odom_frame"/>
+
+-->
+
+    <node pkg="rs_robot_sensors" type="robot_root_transform_publisher.py" name="t265_pose_to_base_footprint">
+        <param name="parent_frame" value="t265_pose_frame"/>
+        <param name="child_frame" value="base_footprint"/>
+    </node>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_d435" args="-0.03 0 0.03 0 0 0 t265_pose_frame d435_link"/>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="basefootprint_to_marker" args="0.45 0.25 0.7 0 0 0 base_footprint vuforia_marker"/>
+
+</launch>
