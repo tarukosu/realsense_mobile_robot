@@ -13,4 +13,8 @@
     <include file="$(find rs_robot)/launch/cmd_vel_mux.launch"/>
 
     <include file="$(find ros_whill)/launch/modelc.launch"/>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="whill_left_wheel" args="0.0 -0.25 0 0 0 1.57 base_link left_wheel_link"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="whill_right_wheel" args="0.0 0.25 0 0 0 1.57 base_link right_wheel_link"/>
+
 </launch>

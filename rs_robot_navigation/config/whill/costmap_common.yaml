@@ -1,7 +1,9 @@
-footprint: [[0.0, 0.3], [-1.0, 0.3], [-1.0, -0.3], [0.0, -0.3]]
-footprint_padding: 0.01
+# footprint: [[0.0, 0.3], [-1.0, 0.3], [-1.0, -0.3], [0.0, -0.3]]
+footprint: [[0.75, 0.3], [-0.05, 0.3], [-0.05, -0.3], [0.75, -0.3]]
+footprint_padding: 0.2
 
-robot_base_frame: base_tip
+# robot_base_frame: base_tip
+robot_base_frame: base_footprint
 update_frequency: 4.0
 publish_frequency: 3.0
 transform_tolerance: 0.5
@@ -18,9 +20,10 @@ static:
 
 obstacles_laser:
     observation_sources: laser
-    laser: {data_type: LaserScan, clearing: true, marking: true, topic: d435/depth/scan, inf_is_valid: true, observation_persistence: 3}
+    laser: {data_type: LaserScan, clearing: true, marking: true, topic: d435/depth/scan, inf_is_valid: true, observation_persistence: 7}
+    footprint_clearing_enabled: false
     # laser: {data_type: LaserScan, clearing: true, marking: true, topic: d435/depth/scan, inf_is_valid: true, observation_persistence: 3}
     # laser: {data_type: LaserScan, clearing: true, marking: true, topic: d435/depth/scan, inf_is_valid: true}
     
 inflation:
-    inflation_radius: 0.3
+    inflation_radius: 0.5
