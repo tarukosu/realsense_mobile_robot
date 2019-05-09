@@ -1,0 +1,13 @@
+<launch>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_t265" args="0 0 0 0 0 0 odom t265_odom_frame"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_d435" args="-0.03 0 0.03 0 0 0 t265_pose_frame d435_link"/>
+
+    <include file="$(find rs_robot_sensors)/launch/rtabmap.launch">
+        <!--
+        <arg name="frame_id" value="t265_odom_frame"/>
+        <arg name="frame_id" value="odom"/>
+        -->
+        <arg name="frame_id" value="t265_pose_frame"/>
+        <arg name="cloud_voxel_size" value="0.001"/>
+    </include>
+</launch>
