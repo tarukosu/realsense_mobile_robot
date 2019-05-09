@@ -51,6 +51,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>jsk_topic_tools</exec_depend>
   <exec_depend>pcl</exec_depend>
+  <exec_depend>rtabmap_ros</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
