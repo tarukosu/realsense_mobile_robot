@@ -54,6 +54,9 @@
   <exec_depend>joy_teleop</exec_depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>ca_driver</exec_depend>
+  <exec_depend>yocs_cmd_vel_mux</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
+  <exec_depend>teleop_twist_keyboard</exec_depend>
 
   <buildtool_depend>catkin</buildtool_depend>
 
